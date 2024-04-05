@@ -11,21 +11,15 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
     private readonly prisma: PrismaService,
   ) {
     super({
-      jwtFromRequest: ExtractJwt.fromExtractors([
-        (req) => {
-          let jwt = null;
-          if (req && req.cookies) {
-            jwt = req.cookies['access_token'];
-          }
-          return jwt;
-        },
-      ]),
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
       secretOrKey: config.get('JWT_SECRET'),
     });
   }
 
   async validate(payload: { sub: number; email: string }) {
+    console.log('validate', payload);
+
     const user = await this.prisma.user.findUnique({
       where: { id: payload.sub },
     });

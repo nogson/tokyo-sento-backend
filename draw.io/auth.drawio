@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="wwLTh4iysbnAMVAIcEcu" name="ページ1">
-        <mxGraphModel dx="878" dy="768" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="382" dy="210" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -175,10 +175,10 @@
                 <mxCell id="80" value="JWTトークン" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
                     <mxGeometry x="570" y="1450" width="130" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="81" value="&lt;span style=&quot;font-size: 12px;&quot;&gt;res.cookie('token', token, { httpOnly: true });&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontSize=10;fontColor=#000000;fillColor=#FFFFCC;strokeColor=none;" vertex="1" parent="1">
-                    <mxGeometry x="540" y="1590" width="170" height="40" as="geometry"/>
+                <mxCell id="81" value="&lt;span style=&quot;font-size: 12px;&quot;&gt;res.setHeader('Authorization', `Bearer ${jwt.accessToken}`);&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fontSize=10;fontColor=#000000;fillColor=#FFFFCC;strokeColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="540" y="1590" width="200" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="82" value="JWTトークンをCookieにセット" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;labelBackgroundColor=default;strokeColor=default;rounded=1;" vertex="1" parent="1">
+                <mxCell id="82" value="JWTトークンをHeaderにセット" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;labelBackgroundColor=default;strokeColor=default;rounded=1;" vertex="1" parent="1">
                     <mxGeometry x="540" y="1530" width="120" height="46" as="geometry"/>
                 </mxCell>
                 <mxCell id="83" value="" style="endArrow=classic;html=1;dashed=1;strokeWidth=3;" edge="1" parent="1">
@@ -187,7 +187,7 @@
                         <mxPoint x="300" y="1588.18" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="84" value="Set-Cookie: token=xxxx" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
+                <mxCell id="84" value="accessToken" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
                     <mxGeometry x="310" y="1536" width="200" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="85" value="" style="endArrow=classic;html=1;strokeWidth=3;" edge="1" parent="1">
@@ -196,7 +196,7 @@
                         <mxPoint x="530" y="1750" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="86" value="Cookie: token=xxxx" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
+                <mxCell id="86" value="Header&lt;br&gt;Bearer : XXXXXXXXXXXXX" style="text;whiteSpace=wrap;html=1;align=center;verticalAlign=middle;fontSize=12;" vertex="1" parent="1">
                     <mxGeometry x="310" y="1700" width="200" height="40" as="geometry"/>
                 </mxCell>
                 <mxCell id="87" value="その他のリクエスト" style="rounded=0;whiteSpace=wrap;html=1;fontSize=18;" vertex="1" parent="1">

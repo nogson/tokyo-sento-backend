@@ -26,12 +26,7 @@ export class AuthController {
   @Post('login')
   async login(@Body() dto: AuthDto, @Res({ passthrough: true }) res: Response) {
     const jwt = await this.authService.login(dto);
-    res.cookie('access_token', jwt.accessToken, {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'none',
-      path: '/',
-    });
+    res.setHeader('Authorization', `Bearer ${jwt.accessToken}`);
     return { message: 'ok' };
   }
 
@@ -41,13 +36,8 @@ export class AuthController {
     @Body() dto: AuthDto,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const jwt = await this.authService.login(dto);
-    res.cookie('access_token', '', {
-      httpOnly: true,
-      secure: false,
-      sameSite: 'none',
-      path: '/',
-    });
+    await this.authService.login(dto);
+    res.setHeader('Authorization', '');
     return { message: 'ok' };
   }
 }
