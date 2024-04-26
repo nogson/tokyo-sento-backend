@@ -14,13 +14,23 @@ datasource db {
 }
 
 model User {
-  id             Int      @id @default(autoincrement())
-  createdAt      DateTime @default(now())
-  updateAt       DateTime @updatedAt
-  email          String   @unique
+  id             Int           @id @default(autoincrement())
+  createdAt      DateTime      @default(now())
+  updateAt       DateTime      @updatedAt
+  email          String        @unique
   hashedPassword String
   nickName       String?
   tasks          Task[]
+  VisitedBath    VisitedBath[]
+}
+
+model VisitedBath {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  bathId    Int
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Task {

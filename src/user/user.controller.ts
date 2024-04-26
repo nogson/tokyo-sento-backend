@@ -12,8 +12,6 @@ export class UserController {
 
   @Get()
   getLoginUser(@Req() req: Request): Omit<User, 'hashedPassword'> {
-    console.log('ok');
-
     return req.user;
   }
 

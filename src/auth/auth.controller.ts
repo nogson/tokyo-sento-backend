@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { AuthService } from './auth.service';
-import { AuthDto } from './dto/auth.dto';
+import { SignUpDto, LoginDto } from './dto/auth.dto';
 import { Csrf, Msg } from './interfaces/auth.interface';
 
 @Controller('auth')
@@ -18,14 +18,18 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('signup')
-  singUp(@Body() dto: AuthDto): Promise<Msg> {
+  singUp(@Body() dto: SignUpDto): Promise<Msg> {
     return this.authService.signUp(dto);
   }
 
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  async login(@Body() dto: AuthDto, @Res({ passthrough: true }) res: Response) {
+  async login(
+    @Body() dto: LoginDto,
+    @Res({ passthrough: true }) res: Response,
+  ) {
     const jwt = await this.authService.login(dto);
+    // res.setHeader('Access-Control-Expose-Headers', 'Authorization');
     res.setHeader('Authorization', `Bearer ${jwt.accessToken}`);
     return { message: 'ok' };
   }
@@ -33,7 +37,7 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @Post('logout')
   async logout(
-    @Body() dto: AuthDto,
+    @Body() dto: SignUpDto,
     @Res({ passthrough: true }) res: Response,
   ) {
     await this.authService.login(dto);
