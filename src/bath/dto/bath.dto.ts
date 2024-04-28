@@ -1,2 +1,8 @@
-import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator';
 
+export class CommentDto {
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(400)
+  content: string;
+}

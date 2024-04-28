@@ -20,8 +20,8 @@ model User {
   email          String        @unique
   hashedPassword String
   nickName       String?
-  tasks          Task[]
   VisitedBath    VisitedBath[]
+  Comment        Comment[]
 }
 
 model VisitedBath {
@@ -33,12 +33,12 @@ model VisitedBath {
   user      User     @relation(fields: [userId], references: [id])
 }
 
-model Task {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  updateAt    DateTime @updatedAt
-  title       String
-  description String?
-  userId      Int
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+model Comment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updateAt  DateTime @updatedAt
+  content   String
+  bathId    Int
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
 }

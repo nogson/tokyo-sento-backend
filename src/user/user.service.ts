@@ -18,4 +18,11 @@ export class UserService {
     delete user.hashedPassword;
     return user;
   }
+
+  async getVisitedBathsByUser(userId: number) {
+    const visitedBath = await this.prisma.visitedBath.findMany({
+      where: { userId },
+    });
+    return visitedBath;
+  }
 }

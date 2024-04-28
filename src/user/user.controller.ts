@@ -3,7 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from '@prisma/client';
+import { User, VisitedBath } from '@prisma/client';
 
 @UseGuards(AuthGuard('jwt'))
 @Controller('user')
@@ -21,5 +21,13 @@ export class UserController {
     @Body() dto: UpdateUserDto,
   ): Promise<Omit<User, 'hashedPassword'>> {
     return this.userService.updateUser(req.user.id, dto);
+  }
+
+  @Get('/visited-baths')
+  async getVisitedBaths(@Req() req: Request): Promise<VisitedBath[]> {
+    const visitedBath = await this.userService.getVisitedBathsByUser(
+      req.user.id,
+    );
+    return visitedBath;
   }
 }
