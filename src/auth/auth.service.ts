@@ -59,4 +59,20 @@ export class AuthService {
       accessToken: token,
     };
   }
+
+  async refreshToken(userId: number): Promise<Jwt> {
+    const user = await this.prisma.user.findFirst({
+      where: { id: userId },
+    });
+    if (!user) {
+      throw new ForbiddenException('User not found');
+    }
+    const token = await this.jwtService.signAsync({
+      sub: userId,
+      email: user.email,
+    });
+    return {
+      accessToken: token,
+    };
+  }
 }

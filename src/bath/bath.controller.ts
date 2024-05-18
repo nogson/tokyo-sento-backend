@@ -8,6 +8,8 @@ import {
   UseGuards,
   Param,
   Query,
+  HttpCode,
+  HttpStatus,
 } from '@nestjs/common';
 import { Request } from 'express';
 import { Msg } from './interfaces/bath.interface';
@@ -19,6 +21,8 @@ import { Comment } from '@prisma/client';
 @Controller('bath')
 export class BathController {
   constructor(private readonly bathService: BathService) {}
+
+  @UseGuards(AuthGuard('jwt'))
   @Post('visit')
   visit(
     @Req() req: Request,
@@ -28,6 +32,7 @@ export class BathController {
   }
 
   @UseGuards(AuthGuard('jwt'))
+  @HttpCode(HttpStatus.OK)
   @Post('/:id/comment')
   comment(
     @Req() req: Request,

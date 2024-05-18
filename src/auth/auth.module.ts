@@ -13,7 +13,8 @@ import { ConfigService } from '@nestjs/config';
       useFactory: (config: ConfigService) => ({
         global: true,
         secret: config.get('JWT_SECRET'),
-        signOptions: { expiresIn: `${60 * 10}s` },
+        // TOTO : とりあえず7日
+        signOptions: { expiresIn: `${60 * 60 * 24 * 7}s` },
       }),
       inject: [ConfigService],
     }),

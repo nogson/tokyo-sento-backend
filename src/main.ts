@@ -13,6 +13,7 @@ async function bootstrap() {
     credentials: true,
     exposedHeaders: ['Authorization'],
   });
+
   // TODO CSRF対策必要？？
   // app.use(cookieParser());
   await app.listen(process.env.PORT || 3005);
