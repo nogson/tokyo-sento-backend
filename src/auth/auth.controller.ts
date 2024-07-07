@@ -37,11 +37,7 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Post('logout')
-  async logout(
-    @Body() dto: SignUpDto,
-    @Res({ passthrough: true }) res: Response,
-  ) {
-    await this.authService.login(dto);
+  async logout(@Res({ passthrough: true }) res: Response) {
     res.setHeader('Authorization', '');
     return { message: 'ok' };
   }
